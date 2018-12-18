@@ -48,12 +48,12 @@ unzip updated_vxworks63gccdist.zip
 mkdir -p wrs-vxworks-headers/{wind_base/target,share/ldscripts}
 cp -dpr --no-preserve=ownership gccdist/WindRiver/vxworks-6.3/host wrs-vxworks-headers/wind_base
 cp -dpr --no-preserve=ownership gccdist/WindRiver/vxworks-6.3/target/h/. wrs-vxworks-headers/sys-include
-cp -dpr --no-preserve=ownership gccdist/WindRiver/vxworks-6.3/target/h/. wrs-vxworks-headers/include_next_workaround/sys-include
 cp -dpr --no-preserve=ownership gccdist/WindRiver/vxworks-6.3/target/h/wrn/coreip/. wrs-vxworks-headers/include
 cp -dpr --no-preserve=ownership gccdist/WindRiver/vxworks-6.3/target/h/wrn/coreip/. wrs-vxworks-headers/wind_base/target/h
 export WIND_BASE=${SCRIPTPATH}/wrs-vxworks-headers/wind_base
 export VSB_DIR=""
 
+mkdir -p install
 cp -dpr --no-preserve=ownership  wrs-vxworks-headers/sys-include install/i586-wrs-vxworks
 
 # Extract everything

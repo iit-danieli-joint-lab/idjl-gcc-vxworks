@@ -37,6 +37,15 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_C_COMPILER_WORKS 1)
 set(CMAKE_CXX_COMPILER_WORKS 1)
 
-# Includ system directories
-# include_directories(${CMAKE_CURRENT_LIST_DIR}/wrs-vxworks-headers/sys-include)
-# include_directories(${CMAKE_CURRENT_LIST_DIR}/wrs-vxworks-headers/include_next_workaround/sys-include)
+# Include missing system directories
+include_directories(${CMAKE_CURRENT_LIST_DIR}/install/i586-wrs-vxworks/sys-include/wrn/coreip)
+
+# Add imported target for stdc++
+add_library(stdc++ STATIC IMPORTED)
+  set_target_properties(
+    stdc++
+    PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
+               IMPORTED_LOCATION_RELEASE
+               "${CMAKE_CURRENT_LIST_DIR}/install/i586-wrs-vxworks/lib/libstdc++.a"
+               IMPORTED_LOCATION_DEBUG
+               "${CMAKE_CURRENT_LIST_DIR}/install/i586-wrs-vxworks/lib/libstdc++.a")
