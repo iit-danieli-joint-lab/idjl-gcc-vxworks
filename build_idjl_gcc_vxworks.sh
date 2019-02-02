@@ -44,7 +44,7 @@ wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/$CLOOG_VERSION.tar.gz
 wget -nc ftp://ftp.ni.com/pub/devzone/tut/updated_vxworks63gccdist.zip
 
 # Extract VxWorks headers 
-unzip updated_vxworks63gccdist.zip
+unzip -o updated_vxworks63gccdist.zip
 mkdir -p wrs-vxworks-headers/{wind_base/target,share/ldscripts}
 cp -dpr --no-preserve=ownership gccdist/WindRiver/vxworks-6.3/host wrs-vxworks-headers/wind_base
 cp -dpr --no-preserve=ownership gccdist/WindRiver/vxworks-6.3/target/h/. wrs-vxworks-headers/sys-include
@@ -55,6 +55,16 @@ export VSB_DIR=""
 
 mkdir -p install
 cp -dpr --no-preserve=ownership  wrs-vxworks-headers/sys-include install/i586-wrs-vxworks
+
+# Cleanup possible leftovers before extracting everything
+rm -rf ./$BINUTILS_VERSION
+rm -rf ./$GMP_VERSION
+rm -rf ./$MPC_VERSION
+rm -rf ./$MPFR_VERSION
+rm -rf ./$ISL_VERSION
+rm -rf ./$CLOOG_VERSION
+rm -rf ./$BINUTILS_VERSION
+rm -rf ./$GCC_VERSION
 
 # Extract everything
 for f in *.tar*; do tar xfk $f; done
