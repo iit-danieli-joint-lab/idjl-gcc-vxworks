@@ -15,10 +15,14 @@ set(CMAKE_SYSTEM_NAME VxWorks)
 # Set a variable to true to have toolchain-specific CMake code 
 set(IDJL_VXWORKS TRUE)
 
-
 # specify the cross compiler
-SET(CMAKE_C_COMPILER   ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-gcc)
-SET(CMAKE_CXX_COMPILER ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-g++)
+if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
+  set(CMAKE_C_COMPILER   ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-gcc.exe)
+  set(CMAKE_CXX_COMPILER ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-g++.exe)
+else()
+  set(CMAKE_C_COMPILER   ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-gcc)
+  set(CMAKE_CXX_COMPILER ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-g++)
+endif()
 
 # Specify libraries
 link_directories(${CMAKE_CURRENT_LIST_DIR}/install/lib)
