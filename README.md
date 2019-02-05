@@ -35,7 +35,7 @@ ninja
 ## Compilation from source code
 
 For compiling the GCC compiler with VxWorks support, you need a bash like enviroment. 
-The enviroment in which this has been tested have been Ubuntu 18.04 and on Windows the 
+The enviroment in which this has been tested have been Ubuntu 18.04 and on Windows the MSYS2 enviroment. 
 
 ## Windows with MSYS2 
 
