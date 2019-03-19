@@ -86,6 +86,11 @@ make $PARALLEL_MAKE
 make install
 cd ..
 
+# Apply GCC patch (see https://aur.archlinux.org/cgit/aur.git/tree/pointer-cast.patch?h=powerpc-wrs-vxworks-gcc)
+cd $GCC_VERSION 
+patch -p1 < ../pointer-cast.patch 
+cd ..
+
 # Build C/C++ Compilers
 mkdir -p build-gcc
 cd build-gcc
@@ -93,20 +98,6 @@ cd build-gcc
 make $PARALLEL_MAKE all-gcc
 make install-gcc
 cd ..
-
-# Standard C Library Headers and Startup Files
-# mkdir -p build-glibc
-# cd build-glibc
-# ../$GLIBC_VERSION/configure --prefix=$INSTALL_PATH/$TARGET --build=$MACHTYPE --host=$TARGET --target=$TARGET --with-headers=$INSTALL_PATH/$TARGET/include $CONFIGURATION_OPTIONS libc_cv_forced_unwind=yes
-# make install-bootstrap-headers=yes install-headers
-# make $PARALLEL_MAKE csu/subdir_lib
-# install csu/crt1.o csu/crti.o csu/crtn.o $INSTALL_PATH/$TARGET/lib
-# $TARGET-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o $INSTALL_PATH/$TARGET/lib/libc.so
-# touch $INSTALL_PATH/$TARGET/include/gnu/stubs.h
-# cd ..
-
-# Standard C Library Headers 
-# export CPATH=${SCRIPTPATH}/wrs-vxworks-headers/sys-include
 
 # Compiler Support Library
 cd build-gcc
@@ -121,10 +112,26 @@ make install
 cd ..
 
 # the rest of GCC
-# cd build-gcc
-# make $PARALLEL_MAKE all
-# make install
-# cd ..
+cd build-gcc
+make $PARALLEL_MAKE all
+make install
+cd ..
+
+# The VxWorks headers distributed by National Instruments target VxWorks 6.3, 
+# but we are actually targeting VxWorks 6.9 in IDJL builds 
+# For this reason we actually create a sys/time.h header and install it, just containing
+# the definition of the gettimeofday function
+mkdir -p $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys
+cp ./sys_time.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/time.h
+
+# Copy the custom CMake toolchain file 
+cp ./idjl_vxworks_toolchain.cmake.in $INSTALL_PATH/idjl_vxworks_toolchain.cmake
+cp -r ./Platform $INSTALL_PATH/Platform
+
+cp ./setup.sh.in $INSTALL_PATH/setup.sh
+
+# Copy the directory for then defining the WIND_BASE env variable 
+cp -r ./wrs-vxworks-headers $INSTALL_PATH/wrs-vxworks-headers
 
 trap - EXIT
 echo 'Success!'

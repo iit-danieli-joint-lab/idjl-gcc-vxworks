@@ -17,18 +17,18 @@ set(IDJL_VXWORKS TRUE)
 
 # specify the cross compiler
 if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
-  set(CMAKE_C_COMPILER   ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-gcc.exe)
-  set(CMAKE_CXX_COMPILER ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-g++.exe)
+  set(CMAKE_C_COMPILER   ${CMAKE_CURRENT_LIST_DIR}/bin/i586-wrs-vxworks-gcc.exe)
+  set(CMAKE_CXX_COMPILER ${CMAKE_CURRENT_LIST_DIR}/bin/i586-wrs-vxworks-g++.exe)
 else()
-  set(CMAKE_C_COMPILER   ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-gcc)
-  set(CMAKE_CXX_COMPILER ${CMAKE_CURRENT_LIST_DIR}/install/bin/i586-wrs-vxworks-g++)
+  set(CMAKE_C_COMPILER   ${CMAKE_CURRENT_LIST_DIR}/bin/i586-wrs-vxworks-gcc)
+  set(CMAKE_CXX_COMPILER ${CMAKE_CURRENT_LIST_DIR}/bin/i586-wrs-vxworks-g++)
 endif()
 
 # Specify libraries
-link_directories(${CMAKE_CURRENT_LIST_DIR}/install/lib)
+link_directories(${CMAKE_CURRENT_LIST_DIR}/lib)
 
 # where is the target environment
-SET(CMAKE_FIND_ROOT_PATH  ${CMAKE_CURRENT_LIST_DIR}/install)
+SET(CMAKE_FIND_ROOT_PATH  ${CMAKE_CURRENT_LIST_DIR})
 
 # search for programs in the build host directories
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
@@ -42,7 +42,11 @@ set(CMAKE_C_COMPILER_WORKS 1)
 set(CMAKE_CXX_COMPILER_WORKS 1)
 
 # Include missing system directories
-include_directories(${CMAKE_CURRENT_LIST_DIR}/install/i586-wrs-vxworks/sys-include/wrn/coreip)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/sys-include/wrn/coreip)
+
+# Custom sys/time.h header 
+include_directories(${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/idjl-include)
+
 
 # Add imported target for stdc++
 add_library(stdc++ STATIC IMPORTED)
@@ -50,6 +54,6 @@ add_library(stdc++ STATIC IMPORTED)
     stdc++
     PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
                IMPORTED_LOCATION_RELEASE
-               "${CMAKE_CURRENT_LIST_DIR}/install/i586-wrs-vxworks/lib/libstdc++.a"
+               "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libstdc++.a"
                IMPORTED_LOCATION_DEBUG
-               "${CMAKE_CURRENT_LIST_DIR}/install/i586-wrs-vxworks/lib/libstdc++.a")
+               "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libstdc++.a")
