@@ -60,7 +60,7 @@ If the build ends successfully (i.e. it prints  'Success!' at the end of the out
 
 Install development tools: 
 ~~~
-sudo apt install build-essentials
+sudo apt install git build-essentials
 ~~~
 
 Clone this repository and cd in the directory:
