@@ -45,15 +45,17 @@ set(CMAKE_CXX_COMPILER_WORKS 1)
 include_directories(${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/sys-include/wrn/coreip)
 
 # Custom sys/time.h header 
-include_directories(${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/idjl-include)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/include/i586-wrs-vxworks/idjl-include)
 
 
 # Add imported target for stdc++
-add_library(stdc++ STATIC IMPORTED)
-  set_target_properties(
-    stdc++
-    PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-               IMPORTED_LOCATION_RELEASE
-               "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libstdc++.a"
-               IMPORTED_LOCATION_DEBUG
-               "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libstdc++.a")
+if(NOT TARGET stdc++)
+  add_library(stdc++ STATIC IMPORTED)
+    set_target_properties(
+      stdc++
+      PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
+                 IMPORTED_LOCATION_RELEASE
+                 "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libstdc++.a"
+                 IMPORTED_LOCATION_DEBUG
+                 "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libstdc++.a")
+endif()
