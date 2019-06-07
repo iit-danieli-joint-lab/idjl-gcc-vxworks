@@ -7,7 +7,8 @@ Table of Contents
     * [Windows](#windows)
   * [Compilation from source code](#compilation-from-source-code)
     * [Windows with MSYS2 MinGW 64-bit](#windows-with-msys2-mingw-64-bit) 
-    * [Ubuntu](#ubuntu)
+    * [Ubuntu](#ubuntu-1804)
+  * [Troubleshooting](#troubleshooting)
 
 ## Installation from binaries and usage
 
@@ -20,6 +21,9 @@ To use the GCC-based VxWorks compiler, open the Git bash and source the `setup.s
 ~~~
 source /path/where/you/downloaded/idjl-gcc-vxworks/setup.sh
 ~~~
+Note that for any new terminal in which you want to run the compiler, you need to source the `setup.sh` script again. 
+To source the script automatically, you can create a `.bash_profile` file in your home and add the source command there. 
+
 
 To generate a CMake project that target VxWorks, create a `build-vxworks` directory and pass `idjl_vxworks_toolchain.cmake` as the [`CMAKE_TOOLCHAIN_FILE`](https://cmake.org/cmake/help/v3.10/variable/CMAKE_TOOLCHAIN_FILE.html) option, using the `Ninja` generator.
 ~~~
@@ -58,7 +62,6 @@ installed in the `idjl-gcc-vworks/install` directory and ready to be used.
 
 To prepare a new release that can be used as described in the [previous section](#installation-from-binaries-and-usage), you just need to zip the the `install` directory, renaming the directory `idjl-gcc-vxworks-windows-x64` and naming the `.zip` file `idjl-gcc-vxworks-windows-x64.zip`.
 
-
 ### Ubuntu 18.04 
 
 Install development tools: 
@@ -78,3 +81,12 @@ Launch the building script (warning: the build can take more than an hour. To av
 ~~~
 
 If the build ends successfully (i.e. it prints  'Success!' at the end of the output), then the compiler is ready to be used. 
+
+## Troubleshooting
+### environment variable ‘WIND_BASE’ not defined
+
+If then compiling you get the error: 
+~~~
+i586-wrs-vxworks-gcc: fatal error: environment variable ‘WIND_BASE’ not defined
+~~~
+that means that in that terminal the `WIND_BASE` env variables is not defined, so you need to source the `idjl-gcc-vxworks/setup.sh` script again.
