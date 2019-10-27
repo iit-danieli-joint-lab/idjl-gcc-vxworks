@@ -12,8 +12,7 @@ trap 'echo FAILED COMMAND: $previous_command' EXIT
 # Based on http://preshing.com/20141119/how-to-build-a-gcc-cross-compiler
 #-------------------------------------------------------------------------------------------
 
-SCRIPT=`realpath $0`
-export SCRIPTPATH=`dirname $SCRIPT`
+export SCRIPTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 export INSTALL_PATH=${SCRIPTPATH}/install
 export TARGET=i586-wrs-vxworks
 export CONFIGURATION_OPTIONS="--disable-multilib --disable-threads --disable-libssp --disable-libquadmath --disable-libquadmath-support --enable-libstdcxx --disable-libstdcxx-pch --disable-libitm --disable-libcc1 --with-native-system-header-dir=${SCRIPTPATH}/wrs-vxworks-headers/sys-include"

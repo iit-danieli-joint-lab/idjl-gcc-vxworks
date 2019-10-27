@@ -1,7 +1,6 @@
 #! /bin/bash
 
-SCRIPT=`realpath $0`
-export SCRIPTPATH=`dirname $SCRIPT`
+export SCRIPTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Prepend the variables so if there is any conflict 
 # the local one will be used
