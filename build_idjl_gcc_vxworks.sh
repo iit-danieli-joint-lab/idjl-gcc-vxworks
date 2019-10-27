@@ -26,6 +26,9 @@ ISL_VERSION=isl-0.18
 CLOOG_VERSION=cloog-0.18.1
 export PATH=$INSTALL_PATH/bin:$PATH
 
+# Make sure that the gcc configure's script use the correct cpp 
+export CPP=`which cpp`
+export CXXCPP=`which cpp`
 
 # Download packages
 export http_proxy=$HTTP_PROXY https_proxy=$HTTP_PROXY ftp_proxy=$HTTP_PROXY

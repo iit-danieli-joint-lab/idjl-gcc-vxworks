@@ -1,0 +1,58 @@
+name: C++ CI Workflow
+
+on: [push]
+
+jobs:
+  # Job that build on Linux
+  ubuntuBuild:
+    name: 'ubuntu-18.04'
+    runs-on: ubuntu-18.04
+
+    steps:
+    # Clone the repository in $GITHUB_WORKSPACE
+    - uses: actions/checkout@master
+    
+    - name: Install dependencies
+      run: sudo apt-get install git build-essential bison flex dejagnu gnat-7 libisl-dev libisl15 libisl19 expect texinfo
+
+    - name: Build GCC for VxWorks on Ubuntu
+      shell: bash
+      run: |
+        bash ./build_idjl_gcc_vxworks.sh 
+        
+    # Upload binaries
+    - uses: actions/upload-artifact@master
+      with:
+        name: idjl-gcc-vworks-ubuntu
+        path: install
+        
+  # Job that build on Linux
+  windowsBuild:
+    name: 'windows-2019'
+    runs-on: windows-2019
+
+    steps:
+    # Clone the repository in $GITHUB_WORKSPACE
+    - uses: actions/checkout@master
+      
+    # Use msys2 
+    - uses: numworks/setup-msys2@v1
+      with:
+        msystem: MINGW64
+    
+    # Install deps 
+    - run: msys2do pacman -S --noconfirm base-devel git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake unzip
+       
+    # Build GCC 
+    - run: |
+        msys2do ./build_idjl_gcc_vxworks.sh
+  
+    # Upload binaries
+    - uses: actions/upload-artifact@master
+      with:
+        name: idjl-gcc-vworks-windows
+        path: install
+   
+         
+  
+
