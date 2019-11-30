@@ -563,8 +563,9 @@ function setup_env() {
         # GNU GCC 10 (any): error: ‘PATH_MAX' was not declared on this scope
         GCC_PATCH="GCC_10_up"
     fi
-
-    patch -Np1 < "${ROOT}"/patches/${GCC_PATCH}.patch || die "Failed to patch GCC source!"
+    
+    SCRIPT_DIR=`dirname \`realpath $0\``
+    patch -Np1 < "${SCRIPT_DIR}"/patches/${GCC_PATCH}.patch || die "Failed to patch GCC source!"
 
     cd ..
 
