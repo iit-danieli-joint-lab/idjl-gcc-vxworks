@@ -15,7 +15,7 @@ trap 'echo FAILED COMMAND: $previous_command' EXIT
 export SCRIPTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 export INSTALL_PATH=${SCRIPTPATH}/install
 export TARGET=i586-wrs-vxworks
-export CONFIGURATION_OPTIONS="--disable-multilib --disable-threads --disable-libssp --disable-libquadmath --disable-libquadmath-support --enable-libstdcxx --disable-libstdcxx-pch --disable-libitm --disable-libcc1 --with-native-system-header-dir=${SCRIPTPATH}/wrs-vxworks-headers/sys-include"
+export CONFIGURATION_OPTIONS="--enable-threads --disable-multilib --disable-libssp --disable-libquadmath --disable-libquadmath-support --enable-libstdcxx --disable-libstdcxx-pch --disable-libitm --disable-libcc1 --with-native-system-header-dir=${SCRIPTPATH}/wrs-vxworks-headers/sys-include"
 export PARALLEL_MAKE=-j4
 BINUTILS_VERSION=binutils-2.30
 export GCC_VERSION=gcc-7.3.0
