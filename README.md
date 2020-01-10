@@ -47,7 +47,7 @@ First, install the [MSYS2](https://www.msys2.org/) enviroment using the [install
 
 Then, open an `MSYS2 MinGW 64-bit` terminal (not a `MSYS2 MSYS` or `MSYS2 MinGW 32-bit` one!) and first install the development tools:
 ~~~
-pacman -S base-devel git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake
+pacman -S base-devel git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake unzip
 ~~~
 
 After the installation terminates successfully, open a new `MSYS2 MinGW 64-bit` terminal to make sure that all the installed packages are available, and clone the repo and run the script:
@@ -66,7 +66,7 @@ To prepare a new release that can be used as described in the [previous section]
 
 Install development tools: 
 ~~~
-sudo apt install git build-essentials
+sudo apt install git build-essential bison flex dejagnu gnat-7 libisl-dev libisl15 libisl19 expect texinfo
 ~~~
 
 Clone this repository and cd in the directory:
