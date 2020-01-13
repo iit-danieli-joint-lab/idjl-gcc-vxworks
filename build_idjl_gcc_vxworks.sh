@@ -126,7 +126,14 @@ cd ..
 # For this reason we actually create a sys/time.h header and install it, just containing
 # the definition of the gettimeofday function
 mkdir -p $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys
-cp ./sys_time.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/time.h
+cp ${SCRIPTPATH}/sys_time.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/time.h
+# We also add a dummy select.h that just includes VxWorks's selectLib.h 
+cp ${SCRIPTPATH}/sys_select.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/select.h
+
+# Also the poll.h and the uio.h header are not in the correct location, we copy it there 
+cp ${SCRIPTPATH}/wrs-vxworks-headers/sys-include/wrn/coreip/poll.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/poll.h
+cp ${SCRIPTPATH}/wrs-vxworks-headers/i586-wrs-vxworks/sys-include/wrn/coreip/net/uio.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/uio.h
+
 
 # Copy the custom CMake toolchain file 
 cp ./idjl_vxworks_toolchain.cmake.in $INSTALL_PATH/idjl_vxworks_toolchain.cmake
