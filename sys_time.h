@@ -7,6 +7,6 @@
 
 struct timeval; 
 
-int gettimeofday(struct timeval *restrict tp, void *restrict tzp); 
+int gettimeofday(struct timeval * tp, void * tzp); 
 
 #endif
