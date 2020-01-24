@@ -5,7 +5,7 @@
 // available in VxWorks 6.3, the version for which public headers are available 
 // Definition from http://pubs.opengroup.org/onlinepubs/009695399/functions/gettimeofday.html
 
-struct timeval; 
+#include <sys/times.h>
 
 int gettimeofday(struct timeval * tp, void * tzp); 
 
