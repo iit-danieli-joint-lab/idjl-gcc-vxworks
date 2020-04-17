@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Fondazione Istituto Italiano di Tecnologia (IIT)
+# Copyright (C) 2020 Fondazione Istituto Italiano di Tecnologia (IIT)
 # All Rights Reserved.
 
 # See this reference on CMake toolchains files 
@@ -59,3 +59,25 @@ if(NOT TARGET stdc++)
                  IMPORTED_LOCATION_DEBUG
                  "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libstdc++.a")
 endif()
+
+# Add imported target for supc++
+if(NOT TARGET supc++)
+  add_library(supc++ STATIC IMPORTED)
+    set_target_properties(
+      supc++
+      PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
+                 IMPORTED_LOCATION_RELEASE
+                 "${CMAKE_TOOLCHAIN_FILE_DIR}/i586-wrs-vxworks/lib/libsupc++.a"
+                 IMPORTED_LOCATION_DEBUG
+                 "${CMAKE_TOOLCHAIN_FILE_DIR}/i586-wrs-vxworks/lib/libsupc++.a")
+endif()
+
+# Add imported target for libgcc
+if(NOT TARGET libgcc)
+  add_library(libgcc STATIC IMPORTED)
+    set_target_properties(
+      libgcc
+      PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
+                 IMPORTED_LOCATION_RELEASE                  "${CMAKE_TOOLCHAIN_FILE_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a"
+                 IMPORTED_LOCATION_DEBUG                    "${CMAKE_TOOLCHAIN_FILE_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a")
+  endif()
