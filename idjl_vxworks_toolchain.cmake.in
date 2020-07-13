@@ -67,9 +67,9 @@ if(NOT TARGET supc++)
       supc++
       PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
                  IMPORTED_LOCATION_RELEASE
-                 "${CMAKE_TOOLCHAIN_FILE_DIR}/i586-wrs-vxworks/lib/libsupc++.a"
+                 "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libsupc++.a"
                  IMPORTED_LOCATION_DEBUG
-                 "${CMAKE_TOOLCHAIN_FILE_DIR}/i586-wrs-vxworks/lib/libsupc++.a")
+                 "${CMAKE_CURRENT_LIST_DIR}/i586-wrs-vxworks/lib/libsupc++.a")
 endif()
 
 # Add imported target for libgcc
@@ -78,6 +78,6 @@ if(NOT TARGET libgcc)
     set_target_properties(
       libgcc
       PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-                 IMPORTED_LOCATION_RELEASE                  "${CMAKE_TOOLCHAIN_FILE_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a"
-                 IMPORTED_LOCATION_DEBUG                    "${CMAKE_TOOLCHAIN_FILE_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a")
+                 IMPORTED_LOCATION_RELEASE                  "${CMAKE_CURRENT_LIST_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a"
+                 IMPORTED_LOCATION_DEBUG                    "${CMAKE_CURRENT_LIST_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a")
   endif()
