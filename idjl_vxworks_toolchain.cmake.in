@@ -80,4 +80,4 @@ if(NOT TARGET libgcc)
       PROPERTIES IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
                  IMPORTED_LOCATION_RELEASE                  "${CMAKE_CURRENT_LIST_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a"
                  IMPORTED_LOCATION_DEBUG                    "${CMAKE_CURRENT_LIST_DIR}/lib/gcc/i586-wrs-vxworks/7.3.0/libgcc.a")
-  endif()
+endif()
