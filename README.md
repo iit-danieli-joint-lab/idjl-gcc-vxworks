@@ -66,7 +66,20 @@ To prepare a new release that can be used as described in the [previous section]
 
 Install development tools: 
 ~~~
-sudo apt install git build-essential bison flex dejagnu gnat-7 libisl-dev libisl15 libisl19 expect texinfo unzip wget
+sudo apt install \
+  bison \
+  build-essential \
+  dejagnu \
+  expect \
+  flex \
+  git \
+  gnat-7 \
+  libisl-dev \
+  libisl15 \
+  libisl19 \
+  texinfo \
+  unzip \
+  wget
 ~~~
 
 Clone this repository and cd in the directory:
