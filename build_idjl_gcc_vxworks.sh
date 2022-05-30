@@ -132,7 +132,7 @@ cp ${SCRIPTPATH}/sys_select.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-includ
 
 # Also the poll.h and the uio.h header are not in the correct location, we copy it there 
 cp ${SCRIPTPATH}/wrs-vxworks-headers/sys-include/wrn/coreip/poll.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/poll.h
-cp ${SCRIPTPATH}/wrs-vxworks-headers/i586-wrs-vxworks/sys-include/wrn/coreip/net/uio.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/uio.h
+cp ${SCRIPTPATH}/wrs-vxworks-headers/include/net/uio.h $INSTALL_PATH/include/i586-wrs-vxworks/idjl-include/sys/uio.h
 
 
 # Copy the custom CMake toolchain file 
