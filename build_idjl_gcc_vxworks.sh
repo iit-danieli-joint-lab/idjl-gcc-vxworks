@@ -40,7 +40,7 @@ wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/$CLOOG_VERSION.tar.gz
 # Download VxWorks headers 
 # See https://aur.archlinux.org/packages/wrs-vxworks-headers/
 # See https://github.com/rbmj/wrs-headers-installer 
-wget -nc ftp://ftp.ni.com/pub/devzone/tut/updated_vxworks63gccdist.zip
+wget -nc https://natinst.my.salesforce.com/sfc/dist/version/download/?oid=00Di0000000jTAB&ids=0683q000009a0Yd&d=%2Fa%2F3q000000CmiA%2FEorHyRtdevWEmrfHQpaNwPsfaXj_HW262WqxJufz2Xk&asPdf=false
 
 # Extract VxWorks headers 
 unzip -o updated_vxworks63gccdist.zip
